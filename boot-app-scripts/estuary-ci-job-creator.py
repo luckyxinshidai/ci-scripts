@@ -69,6 +69,20 @@ d03 = {'device_type': 'd03',
                             'lpae': False,
                             'be': False,
                             'fastboot': False}
+d05 = {'device_type': 'd05',
+    'templates': ['d05-arm64-kernel-ci-boot-template.json',
+                              'd05-arm64-kernel-ci-boot-sata-template.json',
+                              'd05-arm64-kernel-ci-boot-nfs-template.json',
+                              'd05-arm64-kernel-ci-boot-pxe-template.json',
+                              'd05-arm64-kernel-ci-weekly-template.json'],
+    'defconfig_blacklist': ['arm64-allnoconfig',
+                            'arm64-allmodconfig'],
+                            'kernel_blacklist': [],
+                            'nfs_blacklist': [],
+                            'lpae': False,
+                            'be': False,
+                            'fastboot': False}
+
 
 hi6220_hikey = {'device_type': 'hi6220-hikey',
                 'templates': ['generic-arm64-dtb-kernel-ci-boot-template.json',
@@ -104,7 +118,8 @@ dummy_ssh = {'device_type': 'dummy_ssh',
 
 device_map = {'hip04-d01.dtb': [d01],
               'hip05-d02.dtb': [d02],
-              'hip06-d03.dtb': [d03],
+              'D03': [d03],
+              'D05': [d05],
               'hisi-x5hd2-dkb.dtb': [hisi_x5hd2_dkb],
               #'qemu-arm-legacy': [qemu_arm],
               #'qemu-aarch64-legacy': [qemu_aarch64],
@@ -150,7 +165,7 @@ def get_nfs_url(distro_url, device_type):
 # add by wuyanjun 2016-06-25
 def get_pubkey():
     key_loc = os.path.join(os.path.expandvars('$HOME'), '.ssh', 'id_rsa.pub')
-   
+
     if os.path.exists(key_loc):
         pubkey = open(key_loc, 'r').read().rstrip()
     else:
@@ -180,7 +195,7 @@ def create_jobs(base_url, kernel, plans, platform_list, targets, priority,
 
     pubkey = get_pubkey()
     for platform in platform_list:
-        platform_name = platform.split('/')[-1]
+        platform_name = platform.split('/')[-1].partition('_')[-1]
         for device in device_map[platform_name]:
             device_type = device['device_type']
             device_templates = device['templates']
@@ -251,7 +266,7 @@ def create_jobs(base_url, kernel, plans, platform_list, targets, priority,
                         total_templates = list(set(single_templates).union(set(both_templates)))
                     else:
                         # may be need to improve here because of all test cases will be executed
-                        total_templates = [x for x in device_templates] 
+                        total_templates = [x for x in device_templates]
                     # may need to change
                     get_nfs_url(distro_url, device_type)
                     for template in total_templates:
@@ -269,7 +284,7 @@ def create_jobs(base_url, kernel, plans, platform_list, targets, priority,
                                         tmp = line.replace('{dtb_url}', platform)
                                         tmp = tmp.replace('{kernel_url}', kernel)
                                         # add by wuyanjun
-                                        # if the jobs are not the boot jobs of LAVA, try to use the 
+                                        # if the jobs are not the boot jobs of LAVA, try to use the
                                         # dummy_ssh as the board device, or use the ${board_type} itself.
                                         if 'boot' not in plan and 'BOOT' not in plan:
                                             tmp = tmp.replace('{device_type}', 'dummy_ssh'+'_'+device_type)
@@ -297,6 +312,7 @@ def create_jobs(base_url, kernel, plans, platform_list, targets, priority,
                                         tmp = tmp.replace('{defconfig}', defconfig)
                                         tmp = tmp.replace('{fastboot}', str(fastboot).lower())
                                         tmp = tmp.replace('{distro_name}', distro)
+                                        tmp = tmp.replace('{target_type}', distro)
                                         if plan:
                                             tmp = tmp.replace('{test_plan}', plan)
                                         if test_suite:
@@ -413,9 +429,8 @@ def walk_url(url, distro_url, plans=None, arch=None, targets=None,
             if 'Image' in name and 'arm64' in url:
                 kernel = url + name
                 base_url = url
-            if name.endswith('.dtb') and name in device_map:
-                if base_url and base_url in url:
-                    platform_list.append(url + name)
+            if name.startswith('Image') and name.partition('_')[2] in device_map:
+                platform_list.append(url + name)
         if 'distro' in name:
             distro_url = url + name
     if kernel is not None and base_url is not None:
