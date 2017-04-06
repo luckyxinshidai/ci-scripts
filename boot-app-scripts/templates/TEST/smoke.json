@@ -11,18 +11,21 @@
                 "kernel.defconfig": "{defconfig}",
                 "platform.fastboot": "{fastboot}",
                 "test.plan": "{test_plan}"
+            },
+            "parameters": {
+                "target_type": "{target_type}"
             }
         },
         {
-          "command": "lava_test_shell",
-          "parameters": {
-            "testdef_repos": [
+            "command": "lava_test_shell",
+            "parameters": {
+                "testdef_repos": [
                     {
-                        "git-repo": "git://github.com/wuyuer/lava-test-cases.git",
+                        "git-repo": "https://github.com/open-estuary/ci-test-cases.git",
                         "parameters": {
-                            "SKIPFILE": "skipfile-lsk-juno"
                         },
-                        "testdef": "ubuntu/ltp.yaml"
+
+                        "testdef": "common/smoke.yaml"
                     }
                 ],
                 "timeout": 7200

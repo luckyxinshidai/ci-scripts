@@ -1,7 +1,7 @@
 {
     "actions": [
         {
-            "command": "dummy_deploy",
+            "command": "deploy_linaro_kernel",
             "metadata": {
                 "image.type": "{image_type}",
                 "image.url": "{image_url}",
@@ -10,19 +10,21 @@
                 "kernel.endian": "{endian}",
                 "kernel.defconfig": "{defconfig}",
                 "platform.fastboot": "{fastboot}",
+                "bootloadertype": "uefi",
                 "test.plan": "{test_plan}"
+            },
+            "parameters": {
+                "kernel": "{kernel_url}",
+                "bootloadertype": "uefi",
+                "target_type": "{target_type}"
             }
         },
         {
-            "command": "lava_test_shell",
+            "command": "boot_linaro_image",
             "parameters": {
-                "testdef_repos": [
-                    {
-                        "git-repo": "git://github.com/wuyuer/lava-test-cases.git",
-                        "testdef": "ubuntu/perf.yaml"
-                    }
-                ],
-                "timeout": 7200
+                "options": [
+                    "boot_cmds=boot_cmds_pxe"
+                ]
             }
         },
         {

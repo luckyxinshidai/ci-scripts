@@ -1,7 +1,7 @@
 {
     "actions": [
         {
-            "command": "dummy_deploy",
+            "command": "deploy_linaro_kernel",
             "metadata": {
                 "image.type": "{image_type}",
                 "image.url": "{image_url}",
@@ -10,23 +10,22 @@
                 "kernel.endian": "{endian}",
                 "kernel.defconfig": "{defconfig}",
                 "platform.fastboot": "{fastboot}",
+                "bootloadertype": "uefi",
                 "test.plan": "{test_plan}"
+                },
+            "parameters": {
+                "dtb": "{dtb_url}",
+                "bootloadertype": "uefi",
+                "kernel": "{kernel_url}",
+                "nfsrootfs": "{nfs_url}"
             }
         },
         {
-            "command": "lava_test_shell",
+            "command": "boot_linaro_image",
             "parameters": {
-                "testdef_repos": [
-                    {
-                        "git-repo": "git://github.com/wuyuer/lava-test-cases.git",
-                        "parameters": {
-                            "DeviceID": "/dev/sda2"
-                        },
-
-                        "testdef": "ubuntu/fio-test.yaml"
-                    }
-                ],
-                "timeout": 7200
+                "options": [
+                    "boot_cmds=boot_cmds_nfs"
+                ]
             }
         },
         {
@@ -38,7 +37,7 @@
         }
     ],
     "device_type": "{device_type}",
-    "job_name": "{job_name}",
+    "job_name": "{job_name}_{nfs_distro}",
     "logging_level": "DEBUG",
     "priority": "high",
     "timeout": 7200

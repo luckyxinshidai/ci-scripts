@@ -28,6 +28,7 @@ device_map = {'arndale': ['exynos5250-arndale', 'exynos'],
               'd01': ['hip04-d01', 'hisi'],
               'd02': ['hip05-d02', 'hisi'],
               'd03': ['hip06-d03', 'hisi'],
+              'd05': ['d05_01', 'hisi'],
               #'dummy_ssh': ['hip05-d02', 'hisi'],
               'hi6220-hikey': ['hi6220-hikey', 'hisi'],
               'qemu-arm-cortex-a15': ['vexpress-v2p-ca15-tc1', 'vexpress'],
@@ -45,6 +46,7 @@ device_map = {'arndale': ['exynos5250-arndale', 'exynos'],
               'dummy_ssh_d02': ['dummy_ssh_d02', None],
               'dummy_ssh_d01': ['dummy_ssh_d01', None],
               'dummy_ssh_d03': ['dummy_ssh_d03', None],
+              'dummy_ssh_d05': ['dummy_ssh_d05', None],
               'kvm': ['x86-kvm', None]}
 
 

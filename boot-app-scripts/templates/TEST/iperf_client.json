@@ -13,7 +13,7 @@
                 "test.plan": "{test_plan}"
             },
             "parameters": {
-                "target_type": "ubuntu"
+                "target_type": "{target_type}"
             }
         },
         {
