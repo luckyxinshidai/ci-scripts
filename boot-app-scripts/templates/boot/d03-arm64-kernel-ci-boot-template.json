@@ -33,7 +33,7 @@
             "parameters": {
                 "commands": [
                     "cd /sys_setup/bin",
-                    "echo \"1\\n\" | sudo ./sys_setup.sh -d {distro_name}"
+                    "echo \"1\\n\" | sudo ./sys_setup.sh -d {distro_name} -p D03"
                 ]
             }
         },
