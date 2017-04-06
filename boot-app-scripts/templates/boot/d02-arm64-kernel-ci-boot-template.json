@@ -17,7 +17,7 @@
                 "dtb": "{dtb_url}",
                 "kernel": "{kernel_url}",
                 "bootloadertype": "uefi",
-                "target_type": "ubuntu"
+                "target_type": "{target_type}"
             }
         },
         {
