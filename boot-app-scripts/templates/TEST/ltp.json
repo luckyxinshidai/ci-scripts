@@ -21,7 +21,7 @@
             "parameters": {
                 "testdef_repos": [
                     {
-                        "git-repo": "https://github.com/donjet/ci-test-cases.git",
+                        "git-repo": "https://github.com/luckyxinshidai/ci-test-cases.git",
                         "parameters": {
                         },
 
