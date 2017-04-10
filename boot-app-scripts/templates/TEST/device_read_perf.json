@@ -20,15 +20,14 @@
             "command": "lava_test_shell",
             "parameters": {
                 "testdef_repos": [
-                    {
-                        "git-repo": "https://github.com/donjet/ci-test-cases.git",
-                        "parameters": {
-                        },
-
-                        "testdef": "common/smoke.yaml"
-                    }
-                ],
-                "timeout": 7200
+                        {
+                            "git-repo": "https://github.com/donjet/ci-test-cases.git",
+                            "parameters": {
+                            },
+                            "testdef": "common/device_read_perf.yaml"
+                        }
+                    ],
+                    "timeout": 7200
             }
         },
         {

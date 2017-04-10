@@ -21,12 +21,11 @@
             "parameters": {
                 "testdef_repos": [
                         {
-                            "git-repo": "https://github.com/joyxu/lava-test-definitions",
+                            "git-repo": "https://github.com/donjet/ci-test-cases.git",
                             "parameters": {
-                                "LEN": "16K",
-                                "REMOTE_IP": "192.168.1.106"
                             },
-                            "testdef": "ubuntu/iperf-client.yaml"
+
+                            "testdef": "common/cyclictest-basic.yaml"
                         }
                     ],
                     "timeout": 7200
