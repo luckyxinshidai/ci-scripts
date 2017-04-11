@@ -289,7 +289,7 @@ def create_jobs(base_url, kernel, plans, platform_list, targets, priority,
                                         if 'boot' not in plan and 'BOOT' not in plan:
                                             tmp = tmp.replace('{device_type}', 'dummy_ssh'+'_'+device_type)
                                         else:
-                                            tmp = tmp.replace('{device_type}', device_type)
+                                            tmp = tmp.replace('{device_type}', device_type+'_zsj_test')
                                         tmp = tmp.replace('{job_name}',\
                                                 job_json.split("/")[-1].split(".json")[0])
                                         if sasFlag:
