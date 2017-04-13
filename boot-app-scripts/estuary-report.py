@@ -46,6 +46,7 @@ device_map = {'arndale': ['exynos5250-arndale', 'exynos'],
               'dummy_ssh_d02': ['dummy_ssh_d02', None],
               'dummy_ssh_d01': ['dummy_ssh_d01', None],
               'dummy_ssh_d03': ['dummy_ssh_d03', None],
+              'dummy_ssh_d03_zsj_test': ['dummy_ssh_d03_zsj_test', None],
               'dummy_ssh_d05': ['dummy_ssh_d05', None],
               'kvm': ['x86-kvm', None]}
 
