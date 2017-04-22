@@ -21,7 +21,7 @@
             "parameters": {
             "testdef_repos": [
                 {
-                    "git-repo": "https://github.com/open-estuary/ci-test-cases.git",
+                    "git-repo": "https://github.com/luckyxinshidai/ci-test-cases.git",
                     "testdef": "distro/{nfs_distro}/{nfs_distro}_docker.yaml"
                 }
             ],
